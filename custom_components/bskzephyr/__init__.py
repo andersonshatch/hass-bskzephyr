@@ -12,7 +12,7 @@ from homeassistant.helpers.aiohttp_client import async_get_clientsession
 from bskzephyr import BSKZephyrClient, InvalidAuthError
 from homeassistant.exceptions import ConfigEntryAuthFailed
 
-_PLATFORMS: list[Platform] = [Platform.SELECT, Platform.SENSOR, Platform.SWITCH]
+_PLATFORMS: list[Platform] = [Platform.NUMBER, Platform.SELECT, Platform.SENSOR, Platform.SWITCH]
 
 @dataclass(kw_only=True)
 class BSKZephyrData:
