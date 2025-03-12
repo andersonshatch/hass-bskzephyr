@@ -12,7 +12,7 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, Upda
 
 from bskzephyr import BSKZephyrClient, Zephyr, ZephyrException
 
-#from . import BSKZephyrConfigEntry
+# from . import BSKZephyrConfigEntry
 from .const import DOMAIN, SUPPORTED_MODELS
 
 _LOGGER = logging.getLogger(__name__)
@@ -24,7 +24,10 @@ class DeviceDataUpdateCoordinator(DataUpdateCoordinator[List[Zephyr]]):
     config_entry: BSKZephyrConfigEntry
 
     def __init__(
-        self, hass: HomeAssistant, config_entry: BSKZephyrConfigEntry, client: BSKZephyrClient
+        self,
+        hass: HomeAssistant,
+        config_entry: BSKZephyrConfigEntry,
+        client: BSKZephyrClient,
     ) -> None:
         """Initialize data coordinator."""
         super().__init__(
@@ -33,17 +36,21 @@ class DeviceDataUpdateCoordinator(DataUpdateCoordinator[List[Zephyr]]):
             config_entry=config_entry,
             name=f"{DOMAIN}_{config_entry.data[CONF_USERNAME]}",
             update_interval=timedelta(minutes=2),
-            always_update=False
+            always_update=False,
         )
 
         self.data = {}
         self.api = client
 
-    async def _async_update_data(self) -> Dict[str: Zephyr]:
+    async def _async_update_data(self) -> Dict[str:Zephyr]:
         """Request to the server to update the status from full response data."""
         try:
             device_list = await self.api.list_devices()
-            return {device.device.groupID: device for device in device_list if device.deviceModel in SUPPORTED_MODELS}
+            return {
+                device.device.groupID: device
+                for device in device_list
+                if device.deviceModel in SUPPORTED_MODELS
+            }
         except ZephyrException as e:
             raise UpdateFailed(e) from e
 

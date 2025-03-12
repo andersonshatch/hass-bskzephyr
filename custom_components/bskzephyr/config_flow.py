@@ -38,9 +38,13 @@ class SetupBSKZephyrConfigFlow(ConfigFlow, domain=DOMAIN):
         """Handle the initial step."""
         errors: dict[str, str] = {}
         if user_input is not None:
-            
+
             try:
-                client = BSKZephyrClient(async_get_clientsession(self.hass), user_input[CONF_USERNAME], user_input[CONF_PASSWORD])
+                client = BSKZephyrClient(
+                    async_get_clientsession(self.hass),
+                    user_input[CONF_USERNAME],
+                    user_input[CONF_PASSWORD],
+                )
                 await client.login()
             except CannotConnect:
                 errors["base"] = "cannot_connect"
@@ -50,10 +54,12 @@ class SetupBSKZephyrConfigFlow(ConfigFlow, domain=DOMAIN):
                 _LOGGER.exception("Unexpected exception")
                 errors["base"] = "unknown"
             else:
-                return self.async_create_entry(title=user_input[CONF_USERNAME], data=user_input)
-            
-        #await self.async_set_unique_id(user_input[CONF_USERNAME])
-        #self._abort_if_unique_id_configured()
+                return self.async_create_entry(
+                    title=user_input[CONF_USERNAME], data=user_input
+                )
+
+        # await self.async_set_unique_id(user_input[CONF_USERNAME])
+        # self._abort_if_unique_id_configured()
 
         return self.async_show_form(
             step_id="user", data_schema=STEP_USER_DATA_SCHEMA, errors=errors
