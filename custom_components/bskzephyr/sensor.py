@@ -1,7 +1,6 @@
 import logging
 from . import BSKZephyrConfigEntry
 from .coordinator import DeviceDataUpdateCoordinator
-from .entity import BSKZephyrEntity
 from homeassistant.components.sensor import (
     EntityCategory,
     SensorDeviceClass,
@@ -13,10 +12,8 @@ from homeassistant.const import PERCENTAGE, UnitOfTemperature
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC, DeviceInfo
 
-from bskzephyr import Zephyr
 from homeassistant.helpers.update_coordinator import CoordinatorEntity
 
-from .const import SUPPORTED_MODELS
 
 _LOGGER = logging.getLogger(__name__)
 

@@ -4,7 +4,6 @@ from __future__ import annotations
 
 from datetime import timedelta
 import logging
-from typing import Any, Dict, List
 
 from homeassistant.const import CONF_USERNAME
 from homeassistant.core import HomeAssistant
@@ -12,21 +11,18 @@ from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, Upda
 
 from bskzephyr import BSKZephyrClient, Zephyr, ZephyrException
 
-# from . import BSKZephyrConfigEntry
 from .const import DOMAIN, SUPPORTED_MODELS
 
 _LOGGER = logging.getLogger(__name__)
 
 
-class DeviceDataUpdateCoordinator(DataUpdateCoordinator[List[Zephyr]]):
+class DeviceDataUpdateCoordinator(DataUpdateCoordinator[list[Zephyr]]):
     """BSK Zephyr Data Update Coordinator."""
-
-    config_entry: BSKZephyrConfigEntry
 
     def __init__(
         self,
         hass: HomeAssistant,
-        config_entry: BSKZephyrConfigEntry,
+        config_entry,
         client: BSKZephyrClient,
     ) -> None:
         """Initialize data coordinator."""
@@ -42,7 +38,7 @@ class DeviceDataUpdateCoordinator(DataUpdateCoordinator[List[Zephyr]]):
         self.data = {}
         self.api = client
 
-    async def _async_update_data(self) -> Dict[str:Zephyr]:
+    async def _async_update_data(self) -> dict[str:Zephyr]:
         """Request to the server to update the status from full response data."""
         try:
             device_list = await self.api.list_devices()
@@ -60,7 +56,7 @@ class DeviceDataUpdateCoordinator(DataUpdateCoordinator[List[Zephyr]]):
 
 
 async def async_setup_device_coordinator(
-    hass: HomeAssistant, config_entry: BSKZephyrConfigEntry, client: BSKZephyrClient
+    hass: HomeAssistant, config_entry, client: BSKZephyrClient
 ) -> DeviceDataUpdateCoordinator:
     """Create DeviceDataUpdateCoordinator and device_api per device."""
     coordinator = DeviceDataUpdateCoordinator(hass, config_entry, client)

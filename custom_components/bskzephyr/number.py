@@ -1,5 +1,3 @@
-from typing import Any
-
 from homeassistant.const import PERCENTAGE
 from . import BSKZephyrConfigEntry, DeviceDataUpdateCoordinator
 from homeassistant.components.number import NumberEntity, NumberEntityDescription
