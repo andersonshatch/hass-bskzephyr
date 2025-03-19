@@ -1,5 +1,5 @@
 from homeassistant.const import PERCENTAGE
-from . import BSKZephyrConfigEntry, DeviceDataUpdateCoordinator
+from . import BSKZephyrConfigEntry, BSKDataUpdateCoordinator
 from homeassistant.components.number import NumberEntity, NumberEntityDescription
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC, DeviceInfo
@@ -27,11 +27,11 @@ async def async_setup_entry(
         )
 
 
-class BSKZephyrNumber(NumberEntity, CoordinatorEntity[DeviceDataUpdateCoordinator]):
+class BSKZephyrNumber(NumberEntity, CoordinatorEntity[BSKDataUpdateCoordinator]):
     def __init__(
         self,
         groupID: str,
-        coordinator: DeviceDataUpdateCoordinator,
+        coordinator: BSKDataUpdateCoordinator,
         description: NumberEntityDescription,
     ):
         super().__init__(coordinator)

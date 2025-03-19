@@ -1,6 +1,6 @@
 import logging
 from . import BSKZephyrConfigEntry
-from .coordinator import DeviceDataUpdateCoordinator
+from .coordinator import BSKDataUpdateCoordinator
 from homeassistant.components.sensor import (
     EntityCategory,
     SensorDeviceClass,
@@ -59,11 +59,11 @@ async def async_setup_entry(
         )
 
 
-class BSKZephyrSensor(SensorEntity, CoordinatorEntity[DeviceDataUpdateCoordinator]):
+class BSKZephyrSensor(SensorEntity, CoordinatorEntity[BSKDataUpdateCoordinator]):
     def __init__(
         self,
         groupID: str,
-        coordinator: DeviceDataUpdateCoordinator,
+        coordinator: BSKDataUpdateCoordinator,
         description: SensorEntityDescription,
     ):
         super().__init__(coordinator)

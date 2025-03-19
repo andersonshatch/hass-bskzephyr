@@ -16,7 +16,7 @@ from .const import DOMAIN, SUPPORTED_MODELS
 _LOGGER = logging.getLogger(__name__)
 
 
-class DeviceDataUpdateCoordinator(DataUpdateCoordinator[list[Zephyr]]):
+class BSKDataUpdateCoordinator(DataUpdateCoordinator[list[Zephyr]]):
     """BSK Zephyr Data Update Coordinator."""
 
     def __init__(
@@ -57,9 +57,9 @@ class DeviceDataUpdateCoordinator(DataUpdateCoordinator[list[Zephyr]]):
 
 async def async_setup_device_coordinator(
     hass: HomeAssistant, config_entry, client: BSKZephyrClient
-) -> DeviceDataUpdateCoordinator:
+) -> BSKDataUpdateCoordinator:
     """Create DeviceDataUpdateCoordinator and device_api per device."""
-    coordinator = DeviceDataUpdateCoordinator(hass, config_entry, client)
+    coordinator = BSKDataUpdateCoordinator(hass, config_entry, client)
     await coordinator.async_refresh()
 
     _LOGGER.debug(

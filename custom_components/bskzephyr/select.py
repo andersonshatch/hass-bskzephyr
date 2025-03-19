@@ -1,4 +1,4 @@
-from . import BSKZephyrConfigEntry, DeviceDataUpdateCoordinator
+from . import BSKZephyrConfigEntry, BSKDataUpdateCoordinator
 from homeassistant.components.select import SelectEntity, SelectEntityDescription
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC, DeviceInfo
@@ -26,11 +26,11 @@ async def async_setup_entry(
         )
 
 
-class BSKZephyrSelect(SelectEntity, CoordinatorEntity[DeviceDataUpdateCoordinator]):
+class BSKZephyrSelect(SelectEntity, CoordinatorEntity[BSKDataUpdateCoordinator]):
     def __init__(
         self,
         groupID: str,
-        coordinator: DeviceDataUpdateCoordinator,
+        coordinator: BSKDataUpdateCoordinator,
         description: SelectEntityDescription,
     ):
         super().__init__(coordinator)

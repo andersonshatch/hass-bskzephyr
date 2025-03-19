@@ -1,5 +1,5 @@
 from typing import Any
-from . import BSKZephyrConfigEntry, DeviceDataUpdateCoordinator
+from . import BSKZephyrConfigEntry, BSKDataUpdateCoordinator
 from homeassistant.components.switch import SwitchEntity, SwitchEntityDescription
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.device_registry import CONNECTION_NETWORK_MAC, DeviceInfo
@@ -20,11 +20,11 @@ async def async_setup_entry(
         )
 
 
-class BSKZephyrSelect(SwitchEntity, CoordinatorEntity[DeviceDataUpdateCoordinator]):
+class BSKZephyrSelect(SwitchEntity, CoordinatorEntity[BSKDataUpdateCoordinator]):
     def __init__(
         self,
         groupID: str,
-        coordinator: DeviceDataUpdateCoordinator,
+        coordinator: BSKDataUpdateCoordinator,
         description: SwitchEntityDescription,
     ):
         super().__init__(coordinator)

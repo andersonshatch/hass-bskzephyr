@@ -3,7 +3,7 @@
 from __future__ import annotations
 from dataclasses import dataclass
 
-from .coordinator import DeviceDataUpdateCoordinator, async_setup_device_coordinator
+from .coordinator import BSKDataUpdateCoordinator, async_setup_device_coordinator
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.const import CONF_PASSWORD, CONF_USERNAME, Platform
 from homeassistant.core import HomeAssistant
@@ -22,7 +22,7 @@ _PLATFORMS: list[Platform] = [
 
 @dataclass(kw_only=True)
 class BSKZephyrData:
-    coordinator: DeviceDataUpdateCoordinator
+    coordinator: BSKDataUpdateCoordinator
 
 
 type BSKZephyrConfigEntry = ConfigEntry[BSKZephyrData]  # noqa: F821
