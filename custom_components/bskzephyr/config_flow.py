@@ -48,8 +48,6 @@ class SetupBSKZephyrConfigFlow(ConfigFlow, domain=DOMAIN):
                     user_input[CONF_PASSWORD],
                 )
                 await client.login()
-            except CannotConnect:
-                errors["base"] = "cannot_connect"
             except InvalidAuthError:
                 errors["base"] = "invalid_auth"
             except Exception:
@@ -63,11 +61,3 @@ class SetupBSKZephyrConfigFlow(ConfigFlow, domain=DOMAIN):
         return self.async_show_form(
             step_id="user", data_schema=STEP_USER_DATA_SCHEMA, errors=errors
         )
-
-
-class CannotConnect(HomeAssistantError):
-    """Error to indicate we cannot connect."""
-
-
-class InvalidAuth(HomeAssistantError):
-    """Error to indicate there is invalid auth."""
