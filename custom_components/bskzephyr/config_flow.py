@@ -38,6 +38,8 @@ class SetupBSKZephyrConfigFlow(ConfigFlow, domain=DOMAIN):
         """Handle the initial step."""
         errors: dict[str, str] = {}
         if user_input is not None:
+            await self.async_set_unique_id(user_input[CONF_USERNAME])
+            self._abort_if_unique_id_configured()
 
             try:
                 client = BSKZephyrClient(
@@ -57,9 +59,6 @@ class SetupBSKZephyrConfigFlow(ConfigFlow, domain=DOMAIN):
                 return self.async_create_entry(
                     title=user_input[CONF_USERNAME], data=user_input
                 )
-
-        # await self.async_set_unique_id(user_input[CONF_USERNAME])
-        # self._abort_if_unique_id_configured()
 
         return self.async_show_form(
             step_id="user", data_schema=STEP_USER_DATA_SCHEMA, errors=errors
