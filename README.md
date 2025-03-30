@@ -5,12 +5,26 @@
 1. Only works for [BSK Zephyr v2](https://www.bskhvac.com.tr/en/product-detail/heat-recovery-units/zephyr-decentrelized-heat-recovery-device) devices registered in the BSK Connect app. If you are using the BSK Zephyr app, download BSK Connect, login with your existing account and register your device in BSK Connect.
 1. Works only with username and password. If you used Apple or Google login, create a new account with username and password and re-register your device / share it from your other account.
 
+## Requirements
+- Home Assistant version 2025.2 or newer
+- [HACS](https://hacs.xyz/) installed
+
 ## Installation
-1. Add a Custom Repository to HACS ([steps](https://hacs.xyz/docs/faq/custom_repositories)) - repository: `andersonshatch/hass-bskzephyr`, type: `integration`
-1. Restart home-assistant
-1. Go to Settings -> Devices & Services and press Add Integration
-1. Search for `BSK Zephyr`
-1. Enter your username and password
+
+### With My Home Assistant
+[![Open your Home Assistant instance and open a repository inside the Home Assistant Community Store.](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=andersonshatch&repository=hass-bskzephyr&category=integration)
+1. Click the button above to add this repo as a custom HACS repo, confirming by pressing Add
+1. Press Download to add the integration
+
+### Manually in HACS
+1. Navigate to HACS and add a custom repo ([steps](https://hacs.xyz/docs/faq/custom_repositories)) using repository: `andersonshatch/hass-bskzephyr`, type: `integration`
+2. Select the BSK Zephyr Connect integration which should appear under the New section
+3. Press Download to add the integration
+
+## Setup
+1. Navigate to Settings -> Devices & Services and press Add Integration
+2. Search for `BSK Zephyr`
+1. Enter your username and password and press Submit
 
 ## Entities
 This integration generates the following entities for each supported device:
