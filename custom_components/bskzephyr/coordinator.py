@@ -42,11 +42,14 @@ class BSKDataUpdateCoordinator(DataUpdateCoordinator[list[Zephyr]]):
         """Request to the server to update the status from full response data."""
         try:
             device_list = await self.api.list_devices()
-            return {
-                device.device.groupID: device
-                for device in device_list
-                if device.deviceModel in SUPPORTED_MODELS
-            }
+            supported_devices = {}
+            for device in device_list:
+                if device.deviceModel in SUPPORTED_MODELS:
+                    supported_devices[device.device.groupID] = device
+                else:
+                    _LOGGER.warning(f"Skipping unsupported device with model {device.deviceModel}")
+
+            return supported_devices
         except ZephyrException as e:
             raise UpdateFailed(e) from e
 

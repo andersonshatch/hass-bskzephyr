@@ -2,7 +2,7 @@
 
 ## Important notes
 1. Unofficial integration using an undocumented API. May break at any time.
-1. Only works for [BSK Zephyr v2](https://www.bskhvac.com.tr/en/product-detail/heat-recovery-units/zephyr-decentrelized-heat-recovery-device) devices registered in the BSK Connect app. If you are using the BSK Zephyr app, download BSK Connect, login with your existing account and register your device in BSK Connect.
+1. Only works for [BSK Zephyr v2](https://www.bskhvac.com.tr/en/product-detail/heat-recovery-units/zephyr-decentrelized-heat-recovery-device) and [BSK Zephyr Mini v1](https://www.bskhvac.com.tr/en/product-detail/heat-recovery-units/zephyr-mini-decentralized-heat-recovery-device) devices registered in the BSK Connect app. If you are using the BSK Zephyr app, download BSK Connect, login with your existing account and register your device in BSK Connect.
 1. Works only with username and password. If you used Apple or Google login, create a new account with username and password and re-register your device / share it from your other account.
 
 ## Requirements
