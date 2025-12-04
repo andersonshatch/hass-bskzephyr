@@ -54,7 +54,7 @@ cards:
         color: white
         icon: mdi:fan-off
       - value: "on"
-        spin: true
+        rotate: true
         color: white
         icon: mdi:fan
   - type: custom:button-card
