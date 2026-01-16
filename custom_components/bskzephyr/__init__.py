@@ -9,7 +9,7 @@ from homeassistant.const import CONF_PASSWORD, CONF_USERNAME, Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from bskzephyr import BSKZephyrClient, InvalidAuthError
+from bskzephyr import BSKZephyrClient, InvalidAuthError, FanSpeed
 from homeassistant.exceptions import ConfigEntryAuthFailed
 
 _PLATFORMS: list[Platform] = [
@@ -30,11 +30,18 @@ type BSKZephyrConfigEntry = ConfigEntry[BSKZephyrData]  # noqa: F821
 
 async def async_setup_entry(hass: HomeAssistant, entry: BSKZephyrConfigEntry) -> bool:
     """Set up BSK Zephyr from a config entry."""
-
+    conf = entry.data
+    custom_speeds = {
+            FanSpeed.night: conf.get("speed_night", 22),
+            FanSpeed.low: conf.get("speed_low", 30),
+            FanSpeed.medium: conf.get("speed_medium", 55),
+            FanSpeed.high: conf.get("speed_high", 80),
+        }
     client = BSKZephyrClient(
         async_get_clientsession(hass),
         entry.data[CONF_USERNAME],
         entry.data[CONF_PASSWORD],
+        speeds=custom_speeds,
     )
 
     try:
