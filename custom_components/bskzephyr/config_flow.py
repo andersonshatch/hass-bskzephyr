@@ -12,7 +12,7 @@ from homeassistant.const import CONF_PASSWORD, CONF_USERNAME
 
 from homeassistant.helpers.aiohttp_client import async_get_clientsession
 
-from bskzephyr import BSKZephyrClient, InvalidAuthError
+from bskzephyr import BSKZephyrClient, InvalidAuthError, DEFAULT_SPEEDS, FanSpeed
 
 from .const import DOMAIN
 
@@ -22,6 +22,10 @@ STEP_USER_DATA_SCHEMA = vol.Schema(
     {
         vol.Required(CONF_USERNAME): str,
         vol.Required(CONF_PASSWORD): str,
+        vol.Optional("speed_night", default=DEFAULT_SPEEDS[FanSpeed.night]): int,
+        vol.Optional("speed_low", default=DEFAULT_SPEEDS[FanSpeed.low]): int,
+        vol.Optional("speed_medium", default=DEFAULT_SPEEDS[FanSpeed.medium]): int,
+        vol.Optional("speed_high", default=DEFAULT_SPEEDS[FanSpeed.high]): int,
     }
 )
 
