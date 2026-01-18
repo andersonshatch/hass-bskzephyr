@@ -11,9 +11,9 @@
   "iot_class": "cloud_polling",
   "quality_scale": "bronze",
   "requirements": [
-    "bskzephyr==1.0.3"
+    "bskzephyr==1.0.4"
   ],
   "ssdp": [],
   "zeroconf": [],
-  "version": "1.0.3"
+  "version": "1.0.6"
 }
