@@ -1,8 +1,11 @@
 import logging
 from . import BSKZephyrConfigEntry
 from .coordinator import BSKDataUpdateCoordinator
+try:
+    from homeassistant.const import EntityCategory
+except ImportError:
+    from homeassistant.components.sensor import EntityCategory
 from homeassistant.components.sensor import (
-    EntityCategory,
     SensorDeviceClass,
     SensorEntity,
     SensorEntityDescription,
